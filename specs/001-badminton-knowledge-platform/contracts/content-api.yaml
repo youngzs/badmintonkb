@@ -1,0 +1,719 @@
+openapi: 3.0.3
+info:
+  title: Youth Badminton Training Platform - Content API
+  description: |
+    Content browsing, search, and retrieval API for the badminton training knowledge platform.
+    Supports age-specific content organization (4 age groups, 18 sections, 200-300 modules).
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: api@example.com
+
+servers:
+  - url: https://api.badminton-training.com/v1
+    description: Production API
+  - url: https://api-staging.badminton-training.com/v1
+    description: Staging API
+
+tags:
+  - name: Age Groups
+    description: Age group (developmental stage) operations
+  - name: Content Sections
+    description: Content section and category operations
+  - name: Training Modules
+    description: Training module browsing and detail retrieval
+  - name: Search
+    description: Full-text search across content
+  - name: Resources
+    description: Resource asset (videos, templates) operations
+
+paths:
+  /age-groups:
+    get:
+      summary: List all age groups
+      description: Returns all 4 age groups (4-6, 7-9, 10-12, 13-15 years) with basic info
+      tags: [Age Groups]
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AgeGroup'
+                  meta:
+                    $ref: '#/components/schemas/MetaPagination'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /age-groups/{ageGroupId}:
+    get:
+      summary: Get age group details
+      description: Returns detailed information about a specific age group including related sections
+      tags: [Age Groups]
+      parameters:
+        - name: ageGroupId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AgeGroupDetailed'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /content-sections:
+    get:
+      summary: List content sections
+      description: Returns content sections with optional filtering by age group or category
+      tags: [Content Sections]
+      parameters:
+        - name: ageGroupId
+          in: query
+          description: Filter by age group ID
+          schema:
+            type: string
+            format: uuid
+        - name: category
+          in: query
+          description: Filter by section category
+          schema:
+            type: string
+            enum: [age_specific, theory, guidance, resources]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContentSection'
+                  meta:
+                    $ref: '#/components/schemas/MetaPagination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /content-sections/{sectionId}:
+    get:
+      summary: Get content section details
+      description: Returns detailed information about a section including related modules
+      tags: [Content Sections]
+      parameters:
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ContentSectionDetailed'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /training-modules:
+    get:
+      summary: List training modules
+      description: Browse training modules with filtering by age group, section, or difficulty
+      tags: [Training Modules]
+      parameters:
+        - name: ageGroupId
+          in: query
+          description: Filter by age group ID
+          schema:
+            type: string
+            format: uuid
+        - name: sectionId
+          in: query
+          description: Filter by content section ID
+          schema:
+            type: string
+            format: uuid
+        - name: difficulty
+          in: query
+          description: Filter by difficulty level
+          schema:
+            type: string
+            enum: [beginner, intermediate, advanced]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+        - name: sort
+          in: query
+          description: Sort order
+          schema:
+            type: string
+            enum: [recent, popular, title]
+            default: recent
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TrainingModule'
+                  meta:
+                    $ref: '#/components/schemas/MetaPagination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /training-modules/{moduleId}:
+    get:
+      summary: Get training module details
+      description: Returns full module content including related resources and modules
+      tags: [Training Modules]
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TrainingModuleDetailed'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /search:
+    get:
+      summary: Search content
+      description: Full-text search across modules, sections, and resources
+      tags: [Search]
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query (Chinese or English keywords)
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 200
+        - name: ageGroupId
+          in: query
+          description: Filter results by age group
+          schema:
+            type: string
+            format: uuid
+        - name: type
+          in: query
+          description: Filter by content type
+          schema:
+            type: string
+            enum: [module, section, resource]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 50
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SearchResult'
+                  meta:
+                    allOf:
+                      - $ref: '#/components/schemas/MetaPagination'
+                      - type: object
+                        properties:
+                          query:
+                            type: string
+                            description: Original search query
+                          total_results:
+                            type: integer
+                            description: Total matching results
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /resources:
+    get:
+      summary: List resource assets
+      description: Browse videos, templates, and assessment tools
+      tags: [Resources]
+      parameters:
+        - name: type
+          in: query
+          description: Filter by resource type
+          schema:
+            type: string
+            enum: [video, template, assessment, reference, image]
+        - name: category
+          in: query
+          description: Filter by content category
+          schema:
+            type: string
+            enum: [technique_demo, training_method, competition_analysis, plan_template, assessment_tool, reading_material]
+        - name: ageGroupId
+          in: query
+          description: Filter by target age group
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ResourceAsset'
+                  meta:
+                    $ref: '#/components/schemas/MetaPagination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /resources/{resourceId}:
+    get:
+      summary: Get resource details
+      description: Returns resource metadata and access URL
+      tags: [Resources]
+      parameters:
+        - name: resourceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ResourceAssetDetailed'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    AgeGroup:
+      type: object
+      required: [id, name, slug, age_range_start, age_range_end, description, order]
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: "启蒙期（4-6岁）"
+        slug:
+          type: string
+          example: "enlightenment-4-6"
+        age_range_start:
+          type: integer
+          example: 4
+        age_range_end:
+          type: integer
+          example: 6
+        description:
+          type: string
+          example: "建立基本运动模式，培养兴趣与协调性"
+        order:
+          type: integer
+          example: 1
+        icon_url:
+          type: string
+          format: uri
+          nullable: true
+        color:
+          type: string
+          example: "#FF6B6B"
+          nullable: true
+
+    AgeGroupDetailed:
+      allOf:
+        - $ref: '#/components/schemas/AgeGroup'
+        - type: object
+          properties:
+            content_sections:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContentSection'
+            module_count:
+              type: integer
+              description: Total number of training modules for this age group
+
+    ContentSection:
+      type: object
+      required: [id, name, slug, category, description, order, published]
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: "体能训练模块"
+        slug:
+          type: string
+          example: "physical-training"
+        category:
+          type: string
+          enum: [age_specific, theory, guidance, resources]
+        age_group_id:
+          type: string
+          format: uuid
+          nullable: true
+        description:
+          type: string
+        order:
+          type: integer
+        icon_url:
+          type: string
+          format: uri
+          nullable: true
+        published:
+          type: boolean
+
+    ContentSectionDetailed:
+      allOf:
+        - $ref: '#/components/schemas/ContentSection'
+        - type: object
+          properties:
+            training_modules:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrainingModule'
+            parent_section:
+              $ref: '#/components/schemas/ContentSection'
+              nullable: true
+
+    TrainingModule:
+      type: object
+      required: [id, title, slug, summary, content_section_id, published]
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          example: "速度与敏捷性训练 - 反应速度训练"
+        slug:
+          type: string
+          example: "reaction-speed-training-7-9"
+        summary:
+          type: string
+          example: "通过信号启动、追逐游戏等方式提升反应速度"
+        content_section_id:
+          type: string
+          format: uuid
+        age_group_id:
+          type: string
+          format: uuid
+          nullable: true
+        difficulty_level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          nullable: true
+        duration:
+          type: integer
+          description: Recommended duration in minutes
+          nullable: true
+        view_count:
+          type: integer
+        share_count:
+          type: integer
+        published:
+          type: boolean
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+
+    TrainingModuleDetailed:
+      allOf:
+        - $ref: '#/components/schemas/TrainingModule'
+        - type: object
+          properties:
+            content:
+              type: string
+              description: Full module content in Markdown/HTML
+            training_purpose:
+              type: string
+              nullable: true
+            scientific_basis:
+              type: string
+              nullable: true
+            safety_guidelines:
+              type: string
+              nullable: true
+            keywords:
+              type: array
+              items:
+                type: string
+            related_modules:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrainingModule'
+            resources:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResourceAsset'
+
+    ResourceAsset:
+      type: object
+      required: [id, name, type, category, file_url, file_size, file_format, published]
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: "高远球技术示范 - 多角度演示"
+        description:
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum: [video, template, assessment, reference, image]
+        category:
+          type: string
+          enum: [technique_demo, training_method, competition_analysis, plan_template, assessment_tool, reading_material]
+        file_url:
+          type: string
+          format: uri
+        thumbnail_url:
+          type: string
+          format: uri
+          nullable: true
+        file_size:
+          type: integer
+          description: File size in bytes
+        file_format:
+          type: string
+          example: "mp4"
+        duration:
+          type: integer
+          description: Duration in seconds (for videos)
+          nullable: true
+        age_group_id:
+          type: string
+          format: uuid
+          nullable: true
+        download_count:
+          type: integer
+        published:
+          type: boolean
+
+    ResourceAssetDetailed:
+      allOf:
+        - $ref: '#/components/schemas/ResourceAsset'
+        - type: object
+          properties:
+            related_modules:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrainingModule'
+
+    SearchResult:
+      type: object
+      required: [id, type, title, snippet, score]
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [module, section, resource]
+        title:
+          type: string
+        snippet:
+          type: string
+          description: Highlighted excerpt matching search query
+        score:
+          type: number
+          format: float
+          description: Relevance score
+        age_group:
+          $ref: '#/components/schemas/AgeGroup'
+          nullable: true
+        url:
+          type: string
+          description: Deep link to content
+
+    MetaPagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          example: "INVALID_REQUEST"
+        message:
+          type: string
+          example: "Invalid request parameters"
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: "INVALID_REQUEST"
+            message: "Invalid request parameters"
+            details:
+              - field: "ageGroupId"
+                message: "Must be a valid UUID"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: "NOT_FOUND"
+            message: "Resource not found"
+
+    RateLimitExceeded:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: "RATE_LIMIT_EXCEEDED"
+            message: "Search rate limit exceeded. Try again in 60 seconds."
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: "INTERNAL_ERROR"
+            message: "An unexpected error occurred"

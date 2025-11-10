@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch:*)",
+      "Bash(if [ -d \"specs\" ])",
+      "Bash(then ls -d specs/[0-9]*-badminton-knowledge-platform)",
+      "Bash(else echo \"specs directory does not exist\")",
+      "Bash(fi)",
+      "Bash(pwsh:*)",
+      "Bash(powershell.exe -File .specify/scripts/powershell/create-new-feature.ps1 -Json -Number 1 -ShortName \"badminton-knowledge-platform\" \"青少年羽毛球训练知识库平台 - Youth Badminton Training Knowledge Base Platform\")",
+      "Bash(powershell.exe -File .specify/scripts/powershell/setup-plan.ps1 -Json)",
+      "Bash(powershell.exe -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -PathsOnly)",
+      "Bash(powershell.exe -File .specify/scripts/powershell/update-agent-context.ps1 -AgentType claude)",
+      "Bash(powershell.exe -File .specify/scripts/powershell/check-prerequisites.ps1 -Json)",
+      "Bash(powershell.exe -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)",
+      "Bash(if [ -d \"F:\\work\\study\\sports_training\\specs\\001-badminton-knowledge-platform\\checklists\" ])",
+      "Bash(then echo \"exists\")",
+      "Bash(else echo \"not_found\")",
+      "Bash(git rev-parse:*)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

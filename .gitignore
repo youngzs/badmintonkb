@@ -1,0 +1,73 @@
+# Node.js Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Build Outputs
+dist/
+build/
+.cache/
+.temp/
+.vuepress/dist/
+docs/.vuepress/.cache/
+docs/.vuepress/.temp/
+docs/.vuepress/dist/
+
+# Environment Variables
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor Directories and Files
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*~
+.history/
+
+# OS Files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# WeChat Mini-Program
+miniprogram/dist/
+miniprogram/.tea/
+miniprogram_npm/
+project.private.config.json
+
+# Temporary Files
+*.tmp
+*.temp
+.cache/
+
+# Package Manager Locks (optional - uncomment if needed)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

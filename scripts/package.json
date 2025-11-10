@@ -1,0 +1,22 @@
+{
+  "name": "badminton-training-scripts",
+  "version": "1.0.0",
+  "description": "Build and deployment scripts for Badminton Training Knowledge Platform",
+  "type": "module",
+  "scripts": {
+    "validate-content": "node validate-content.js",
+    "generate-images": "node generate-images.js",
+    "build-static": "bash build-static.sh",
+    "deploy-cdn": "bash deploy-cdn.sh"
+  },
+  "dependencies": {
+    "glob": "^10.3.0",
+    "gray-matter": "^4.0.3",
+    "markdownlint": "^0.31.0",
+    "js-yaml": "^4.1.0",
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0"
+  }
+}

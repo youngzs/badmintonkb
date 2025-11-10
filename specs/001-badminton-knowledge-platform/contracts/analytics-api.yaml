@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Youth Badminton Training Platform - Analytics API
+  description: Usage tracking and metrics collection
+  version: 1.0.0
+
+servers:
+  - url: https://api.badminton-training.com/v1
+
+paths:
+  /analytics/track:
+    post:
+      summary: Track user event
+      description: Record user interactions for analytics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [event_name]
+              properties:
+                event_name:
+                  type: string
+                  enum: [content_viewed, search_performed, ai_content_generated, content_shared, resource_downloaded, session_started, error_occurred]
+                properties:
+                  type: object
+                  description: Event-specific properties
+      responses:
+        '204':
+          description: Event tracked successfully
+        '400':
+          description: Invalid event data
+
+  /analytics/metrics:
+    get:
+      summary: Get platform metrics
+      description: Retrieve aggregated analytics metrics (admin only)
+      parameters:
+        - name: metric_type
+          in: query
+          schema:
+            type: string
+            enum: [content_popularity, search_trends, ai_usage, share_rate]
+        - name: start_date
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: end_date
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Metrics retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    description: Aggregated metrics data
