@@ -39,7 +39,18 @@
       "Bash(powershell.exe -Command \"Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force\")",
       "Bash(npx create-docusaurus@latest:*)",
       "Bash(npm start)",
-      "Bash(python scripts/fix_keywords.py:*)"
+      "Bash(python scripts/fix_keywords.py:*)",
+      "Bash(python scripts/fix_mdx_syntax.py:*)",
+      "Bash(npm run clear:*)",
+      "Bash(git rm:*)",
+      "Bash(npm run start)",
+      "Bash(python scripts/find_placeholder_images.py:*)",
+      "mcp__image-gen-server__generate_image",
+      "Bash(powershell -Command \"Get-ChildItem ''F:\\work\\study\\sports_training\\website\\docs\\age-groups\\01-enlightenment-4-6\\physical-training\\images\\dynamic-flexibility-warmup-4-6*.png'' | Select-Object Name, @{Name=''SizeKB'';Expression={[math]::Round($_Length/1KB,1)}}\")",
+      "Bash(python -c:*)",
+      "Bash(python scripts/generate_missing_images.py:*)",
+      "Bash(python scripts/remove_english_headers.py:*)",
+      "Bash(iconv:*)"
     ],
     "deny": [],
     "ask": []

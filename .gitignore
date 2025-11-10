@@ -66,6 +66,19 @@ project.private.config.json
 *.tmp
 *.temp
 .cache/
+nul
+
+# Backup Directories
+docs/.vuepress-backup/
+docs/.vuepress/
+*.backup
+*.bak
+
+# Docusaurus
+website/.docusaurus/
+website/build/
+website/.cache/
+website/node_modules/
 
 # Package Manager Locks (optional - uncomment if needed)
 # package-lock.json

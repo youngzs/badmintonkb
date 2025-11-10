@@ -1,66 +1,85 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  emoji: string;
   description: ReactNode;
+  link?: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: '科学年龄分段',
+    emoji: '🎯',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        根据青少年生长发育特点，划分为<strong>4个训练阶段</strong>：
+        4-6岁启蒙期 | 7-9岁基础期 | 10-12岁发展期 | 13-15岁专项期
       </>
     ),
+    link: '/docs',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: '全面知识体系',
+    emoji: '📚',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        涵盖<strong>18个专业板块</strong>：
+        体能训练、技战术、理论知识、心理训练等全方位训练指导
       </>
     ),
+    link: '/docs/theory/technical-mechanics/badminton-technique-principles',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: '多角色适用',
+    emoji: '👥',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        为<strong>教练、家长、运动员</strong>量身打造，
+        提供完整教学方案、训练计划和学习资源
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
-  return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+function Feature({title, emoji, description, link}: FeatureItem) {
+  const getIconStyle = (index: number) => {
+    const iconStyles = [
+      {background: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)'}, // 粉色渐变
+      {background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)'}, // 绿色渐变
+      {background: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)'}, // 紫色渐变
+    ];
+    return iconStyles[index % 3];
+  };
+
+  const content = (
+    <div className={styles.featureCol}>
+      <div className={clsx('card', styles.featureCard)}>
+        <div className={styles.featureIcon} style={getIconStyle(FeatureList.findIndex(f => f.title === title))}>
+          <span className={styles.iconEmoji}>{emoji}</span>
+        </div>
+        <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
+        <p className={styles.featureDescription}>{description}</p>
       </div>
     </div>
   );
+
+  return link ? (
+    <Link to={link} className={styles.featureLink}>
+      {content}
+    </Link>
+  ) : content;
 }
 
 export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="row">
+        <div className={styles.featuresGrid}>
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}

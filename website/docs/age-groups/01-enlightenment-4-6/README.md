@@ -1,4 +1,4 @@
-# 4-6岁启蒙期训练 | Enlightenment Stage (4-6 Years)
+# 4-6岁启蒙期训练
 
 ## 年龄段特点
 
@@ -61,4 +61,4 @@
 
 ---
 
-**下一阶段**: [7-9岁基础期](/content/age-groups/02-foundation-7-9/)
+**下一阶段**: [7-9岁基础期](/docs/age-groups/foundation-7-9)

@@ -39,7 +39,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          routeBasePath: '/', // Serve docs at the site's root
+          routeBasePath: '/docs', // Serve docs at /docs
           // Remove edit links
           editUrl: undefined,
         },
