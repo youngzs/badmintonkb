@@ -913,13 +913,20 @@ def main():
     print(f"总计任务数: {len(IMAGE_TASKS)}")
     print("="*60)
 
-    # 询问生成方式
-    print("\n选择生成方式:")
-    print("1. 全部生成 (推荐)")
-    print("2. 逐个确认生成")
-    print("3. 仅生成指定范围 (如: 1-5)")
+    # 检查命令行参数
+    auto_mode = len(sys.argv) > 1 and sys.argv[1] == '--auto'
 
-    choice = input("\n请选择 (1/2/3): ").strip()
+    if auto_mode:
+        print("\n🤖 自动模式：将生成全部图片")
+        choice = '1'
+    else:
+        # 询问生成方式
+        print("\n选择生成方式:")
+        print("1. 全部生成 (推荐)")
+        print("2. 逐个确认生成")
+        print("3. 仅生成指定范围 (如: 1-5)")
+
+        choice = input("\n请选择 (1/2/3): ").strip()
 
     tasks_to_process = []
 
@@ -940,7 +947,10 @@ def main():
         return
 
     print(f"\n将生成 {len(tasks_to_process)} 张图片")
-    input("按 Enter 开始...")
+    if not auto_mode:
+        input("按 Enter 开始...")
+    else:
+        print("自动开始生成...")
 
     # 生成图片
     success_count = 0

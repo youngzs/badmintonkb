@@ -55,7 +55,7 @@ cover_image: "./images/cover.png"
 
 ### 热身活动（5-10分钟）
 
-![热身动作示意图](./images/GENERATE:warmup-exercises-4-6.png)
+![热身动作示意图](./images/warmup-exercises-4-6.png)
 
 1. **活动名称1**
    - 动作要领：详细描述
@@ -70,7 +70,7 @@ cover_image: "./images/cover.png"
 
 #### 训练项目1：速度与敏捷性
 
-![速度训练动作](./images/GENERATE:speed-drill-agility-4-6.png)
+![速度训练动作](./images/speed-drill-agility-4-6.png)
 
 **动作描述**:
 详细描述训练动作的执行方式、站位、移动路径等。
@@ -91,13 +91,13 @@ cover_image: "./images/cover.png"
 
 #### 训练项目2：协调性训练
 
-![协调性训练](./images/GENERATE:coordination-drill-4-6.png)
+![协调性训练](./images/coordination-drill-4-6.png)
 
 （按照项目1的格式继续编写）
 
 ### 放松整理（5分钟）
 
-![拉伸放松动作](./images/GENERATE:cooldown-stretching-4-6.png)
+![拉伸放松动作](./images/cooldown-stretching-4-6.png)
 
 1. **拉伸动作1**
    - 目标肌群：大腿前侧
