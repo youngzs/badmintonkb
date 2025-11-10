@@ -17,7 +17,10 @@
       "Bash(then echo \"exists\")",
       "Bash(else echo \"not_found\")",
       "Bash(git rev-parse:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(node generate-images.js:*)",
+      "Bash(python scripts/batch_generate_images.py:*)",
+      "Bash(python scripts/test_single_image.py:*)"
     ],
     "deny": [],
     "ask": []
