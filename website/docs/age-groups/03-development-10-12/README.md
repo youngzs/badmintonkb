@@ -70,6 +70,6 @@
 
 ---
 
-**上一阶段**: [7-9岁基础期](/docs/age-groups/foundation-7-9)
+**上一阶段**: [7-9岁基础期](/age-groups/foundation-7-9)
 
-**下一阶段**: [13-15岁专项期](/docs/age-groups/specialization-13-15)
+**下一阶段**: [13-15岁专项期](/age-groups/specialization-13-15)

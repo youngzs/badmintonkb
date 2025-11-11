@@ -71,4 +71,4 @@
 
 ---
 
-**上一阶段**: [10-12岁发展期](/docs/age-groups/development-10-12)
+**上一阶段**: [10-12岁发展期](/age-groups/development-10-12)

@@ -61,4 +61,4 @@
 
 ---
 
-**下一阶段**: [7-9岁基础期](/docs/age-groups/foundation-7-9)
+**下一阶段**: [7-9岁基础期](/age-groups/foundation-7-9)

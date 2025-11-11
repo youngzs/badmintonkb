@@ -19,7 +19,7 @@ title: 欢迎来到青少年羽毛球训练知识库
 - 柔韧性
 - 趣味性游戏
 
-[查看启蒙期训练内容 →](/docs/age-groups/enlightenment-4-6)
+[查看启蒙期训练内容 →](/age-groups/enlightenment-4-6)
 
 ---
 
@@ -33,7 +33,7 @@ title: 欢迎来到青少年羽毛球训练知识库
 - 反应速度
 - 基础技术
 
-[查看基础期训练内容 →](/docs/age-groups/foundation-7-9)
+[查看基础期训练内容 →](/age-groups/foundation-7-9)
 
 ---
 
@@ -47,7 +47,7 @@ title: 欢迎来到青少年羽毛球训练知识库
 - 双打战术基础
 - 技术动作定型
 
-[查看发展期训练内容 →](/docs/age-groups/development-10-12)
+[查看发展期训练内容 →](/age-groups/development-10-12)
 
 ---
 
@@ -61,7 +61,7 @@ title: 欢迎来到青少年羽毛球训练知识库
 - 比赛策略分析
 - 高水平竞技
 
-[查看专项期训练内容 →](/docs/age-groups/specialization-13-15)
+[查看专项期训练内容 →](/age-groups/specialization-13-15)
 
 ---
 
@@ -84,22 +84,22 @@ title: 欢迎来到青少年羽毛球训练知识库
 ## 🔍 快速导航
 
 ### 体能训练
-- [协调性训练基础](/docs/age-groups/enlightenment-4-6/physical-training/coordination-training-basics)
-- [平衡能力训练](/docs/age-groups/enlightenment-4-6/physical-training/balance-training-basics)
-- [速度与敏捷性训练](/docs/age-groups/foundation-7-9/physical-training/speed-agility-training)
-- [专项体能训练](/docs/age-groups/development-10-12/physical-training/specific-fitness-training)
+- [协调性训练基础](/age-groups/enlightenment-4-6/physical-training/coordination-training-basics)
+- [平衡能力训练](/age-groups/enlightenment-4-6/physical-training/balance-training-basics)
+- [速度与敏捷性训练](/age-groups/foundation-7-9/physical-training/speed-agility-training)
+- [专项体能训练](/age-groups/development-10-12/physical-training/specific-fitness-training)
 
 ### 技术训练
-- [握拍与步法基础](/docs/age-groups/foundation-7-9/technical-training/grip-and-footwork-basics)
-- [高远球技术](/docs/age-groups/development-10-12/technical-training/clear-shot-technique)
-- [网前技术进阶](/docs/age-groups/specialization-13-15/technical-training/net-play-advanced)
+- [握拍与步法基础](/age-groups/foundation-7-9/technical-training/grip-and-footwork-basics)
+- [高远球技术](/age-groups/development-10-12/technical-training/clear-shot-technique)
+- [网前技术进阶](/age-groups/specialization-13-15/technical-training/net-play-advanced)
 
 ### 战术训练
-- [双打战术基础](/docs/age-groups/development-10-12/tactical-training/doubles-tactics-basics)
-- [比赛策略分析](/docs/age-groups/specialization-13-15/tactical-training/match-strategy-analysis)
+- [双打战术基础](/age-groups/development-10-12/tactical-training/doubles-tactics-basics)
+- [比赛策略分析](/age-groups/specialization-13-15/tactical-training/match-strategy-analysis)
 
 ### 心理训练
-- [竞技心理训练](/docs/age-groups/specialization-13-15/mental-training/competitive-psychology)
+- [竞技心理训练](/age-groups/specialization-13-15/mental-training/competitive-psychology)
 
 ---
 

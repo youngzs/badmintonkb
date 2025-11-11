@@ -63,6 +63,6 @@
 
 ---
 
-**上一阶段**: [4-6岁启蒙期](/docs/age-groups/enlightenment-4-6)
+**上一阶段**: [4-6岁启蒙期](/age-groups/enlightenment-4-6)
 
-**下一阶段**: [10-12岁发展期](/docs/age-groups/development-10-12)
+**下一阶段**: [10-12岁发展期](/age-groups/development-10-12)
