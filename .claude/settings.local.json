@@ -50,7 +50,8 @@
       "Bash(python -c:*)",
       "Bash(python scripts/generate_missing_images.py:*)",
       "Bash(python scripts/remove_english_headers.py:*)",
-      "Bash(iconv:*)"
+      "Bash(iconv:*)",
+      "Bash(powershell -Command:*)"
     ],
     "deny": [],
     "ask": []
