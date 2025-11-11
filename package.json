@@ -1,0 +1,43 @@
+{
+  "name": "badminton-training-platform",
+  "version": "1.0.0",
+  "description": "Youth Badminton Training Knowledge Base Platform (4-15 years)",
+  "private": true,
+  "workspaces": [
+    "website",
+    "scripts"
+  ],
+  "scripts": {
+    "dev": "cd website && npm start",
+    "start": "cd website && npm start",
+    "build": "cd website && npm run build",
+    "serve": "cd website && npm run serve",
+    "clear": "cd website && npm run clear",
+    "validate": "npm run validate-content --workspace=scripts",
+    "generate-images": "npm run generate-images --workspace=scripts",
+    "deploy": "npm run build && npm run deploy-cdn --workspace=scripts",
+    "lint": "eslint . --ext .js,.ts,.vue",
+    "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "badminton",
+    "training",
+    "youth-sports",
+    "knowledge-base",
+    "wechat-miniprogram"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

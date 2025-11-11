@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  title: Youth Badminton Training Platform - Sharing API
+  description: Content sharing via WeChat mini-program, H5, and QR codes
+  version: 1.0.0
+
+servers:
+  - url: https://api.badminton-training.com/v1
+
+paths:
+  /share/create:
+    post:
+      summary: Create shareable link
+      description: Generate shareable link for content distribution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [target_type, target_id, platform]
+              properties:
+                target_type:
+                  type: string
+                  enum: [training_module, ai_generated_content, resource_asset, content_section]
+                target_id:
+                  type: string
+                  format: uuid
+                platform:
+                  type: string
+                  enum: [wechat_mini_program, h5_web, alipay_mini_program, qr_code]
+      responses:
+        '201':
+          description: Share link created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ShareableLink'
+
+  /share/{shortCode}:
+    get:
+      summary: Resolve share link
+      description: Get target content from short code
+      parameters:
+        - name: shortCode
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[a-zA-Z0-9]{8}$'
+      responses:
+        '200':
+          description: Link resolved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ShareLinkTarget'
+
+components:
+  schemas:
+    ShareableLink:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        short_code:
+          type: string
+          example: "a3Xf9p2Q"
+        share_url:
+          type: string
+          format: uri
+        qr_code_url:
+          type: string
+          format: uri
+          nullable: true
+        mini_program_path:
+          type: string
+          nullable: true
+        title:
+          type: string
+        description:
+          type: string
+          nullable: true
+        image_url:
+          type: string
+          format: uri
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+
+    ShareLinkTarget:
+      type: object
+      properties:
+        target_type:
+          type: string
+        target_id:
+          type: string
+          format: uuid
+        redirect_url:
+          type: string
+          format: uri

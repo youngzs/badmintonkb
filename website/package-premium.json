@@ -1,0 +1,17 @@
+{
+  "name": "badminton-knowledge-premium",
+  "description": "会员系统依赖包",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "@supabase/auth-helpers-react": "^0.4.2",
+    "wechatpay-node-v3": "^3.2.0",
+    "dayjs": "^1.11.10",
+    "react-toastify": "^10.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  },
+  "scripts": {
+    "install-premium": "npm install @supabase/supabase-js @supabase/auth-helpers-react wechatpay-node-v3 dayjs react-toastify"
+  }
+}

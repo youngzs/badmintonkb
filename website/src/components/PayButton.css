@@ -1,0 +1,349 @@
+/* 支付按钮样式 */
+.pay-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.pay-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 按钮变体 */
+.pay-button--primary {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+}
+
+.pay-button--primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.5);
+}
+
+.pay-button--outline {
+  background: transparent;
+  color: #f5576c;
+  border: 2px solid #f5576c;
+}
+
+.pay-button--outline:hover:not(:disabled) {
+  background: #f5576c;
+  color: white;
+}
+
+.pay-button--text {
+  background: transparent;
+  color: #f5576c;
+  padding: 8px 12px;
+}
+
+.pay-button--text:hover:not(:disabled) {
+  background: rgba(245, 87, 108, 0.1);
+}
+
+/* 按钮大小 */
+.pay-button--small {
+  padding: 6px 16px;
+  font-size: 14px;
+}
+
+.pay-button--medium {
+  padding: 10px 24px;
+  font-size: 16px;
+}
+
+.pay-button--large {
+  padding: 14px 32px;
+  font-size: 18px;
+}
+
+/* 加载动画 */
+.pay-button__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 支付弹窗 */
+.payment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+.payment-modal__content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 480px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.payment-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.payment-modal__close:hover {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff0000;
+  transform: rotate(90deg);
+}
+
+.payment-modal__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+/* 计划信息 */
+.payment-modal__plan {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.plan-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.plan-price {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+}
+
+.plan-duration {
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* 二维码 */
+.payment-modal__qrcode {
+  background: white;
+  border: 2px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+}
+
+.payment-modal__qrcode img {
+  width: 240px;
+  height: 240px;
+  display: block;
+}
+
+.qrcode-loading {
+  text-align: center;
+  color: #999;
+}
+
+.qrcode-loading .spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f0f0f0;
+  border-top-color: #f5576c;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  animation: spin 0.8s linear infinite;
+}
+
+.qrcode-loading p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* 提示信息 */
+.payment-modal__tips {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.tip-main {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+}
+
+.tip-sub {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+}
+
+/* 权益列表 */
+.payment-modal__features {
+  background: #f5f7fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.payment-modal__features h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+}
+
+.payment-modal__features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.payment-modal__features li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333;
+  padding: 6px 0;
+}
+
+.check-icon {
+  width: 18px;
+  height: 18px;
+  color: #09bb07;
+  flex-shrink: 0;
+}
+
+/* 订单信息 */
+.payment-modal__footer {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .payment-modal__content {
+    padding: 32px 24px;
+    width: 95%;
+  }
+
+  .payment-modal__title {
+    font-size: 20px;
+  }
+
+  .plan-price {
+    font-size: 28px;
+  }
+
+  .payment-modal__qrcode {
+    min-height: 240px;
+    padding: 16px;
+  }
+
+  .payment-modal__qrcode img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* 暗色模式 */
+@media (prefers-color-scheme: dark) {
+  .payment-modal__content {
+    background: #2a2a3e;
+  }
+
+  .payment-modal__title {
+    color: #ffffff;
+  }
+
+  .payment-modal__qrcode {
+    background: #1a1a2e;
+    border-color: #3a3a4e;
+  }
+
+  .tip-main {
+    color: #ffffff;
+  }
+
+  .tip-sub {
+    color: #b0b0b0;
+  }
+
+  .payment-modal__features {
+    background: #1a1a2e;
+  }
+
+  .payment-modal__features h4 {
+    color: #ffffff;
+  }
+
+  .payment-modal__features li {
+    color: #d0d0d0;
+  }
+
+  .payment-modal__footer {
+    border-top-color: #3a3a4e;
+    color: #b0b0b0;
+  }
+
+  .qrcode-loading {
+    color: #b0b0b0;
+  }
+
+  .qrcode-loading .spinner {
+    border-color: #3a3a4e;
+    border-top-color: #f5576c;
+  }
+}

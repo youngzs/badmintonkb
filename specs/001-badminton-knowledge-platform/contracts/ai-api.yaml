@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: Youth Badminton Training Platform - AI Content Generation API
+  description: |
+    AI-powered content generation for training plans, illustrations, and nutrition advice.
+    Integrates with OpenAI API for supplementary content creation.
+  version: 1.0.0
+
+servers:
+  - url: https://api.badminton-training.com/v1
+    description: Production API
+
+tags:
+  - name: AI Generation
+    description: AI content generation operations
+
+paths:
+  /ai/generate:
+    post:
+      summary: Generate AI content
+      description: Request AI-generated training plans, illustrations, or nutrition advice
+      tags: [AI Generation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AIGenerationRequest'
+      responses:
+        '200':
+          description: Content generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AIGeneratedContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          description: Rate limit exceeded (10 requests/user/day)
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /ai/history:
+    get:
+      summary: Get AI generation history
+      description: Retrieve user's past AI-generated content
+      tags: [AI Generation]
+      parameters:
+        - name: content_type
+          in: query
+          schema:
+            type: string
+            enum: [training_plan, illustration, nutrition_advice, exercise_variation]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 50
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AIGeneratedContent'
+
+components:
+  schemas:
+    AIGenerationRequest:
+      type: object
+      required: [content_type, age_group_id]
+      properties:
+        content_type:
+          type: string
+          enum: [training_plan, illustration, nutrition_advice, exercise_variation]
+        prompt:
+          type: string
+          maxLength: 2000
+          description: User's custom prompt or description
+        age_group_id:
+          type: string
+          format: uuid
+        training_module_id:
+          type: string
+          format: uuid
+          nullable: true
+        parameters:
+          type: object
+          description: Additional generation parameters
+          properties:
+            focus:
+              type: string
+              example: "speed"
+            intensity:
+              type: string
+              enum: [low, moderate, high]
+            duration_weeks:
+              type: integer
+              minimum: 1
+              maximum: 12
+
+    AIGeneratedContent:
+      type: object
+      required: [id, content_type, response, model_used, tokens_used, generation_time_ms, created_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        content_type:
+          type: string
+          enum: [training_plan, illustration, nutrition_advice, exercise_variation]
+        prompt:
+          type: string
+        response:
+          type: string
+        age_group_id:
+          type: string
+          format: uuid
+          nullable: true
+        training_module_id:
+          type: string
+          format: uuid
+          nullable: true
+        model_used:
+          type: string
+          example: "gpt-4"
+        tokens_used:
+          type: integer
+        generation_time_ms:
+          type: integer
+        image_urls:
+          type: array
+          items:
+            type: string
+            format: uri
+          nullable: true
+        quality_rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+
+  responses:
+    BadRequest:
+      description: Invalid request
+    InternalServerError:
+      description: Server error
