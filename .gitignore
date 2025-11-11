@@ -77,6 +77,7 @@ docs/.vuepress/
 # Docusaurus
 website/.docusaurus/
 website/build/
+website/build.zip
 website/.cache/
 website/node_modules/
 
