@@ -27,6 +27,7 @@ const config: Config = {
   projectName: 'docusaurus', // Usually your repo name.
 
   onBrokenLinks: 'warn', // 暂时允许断链，逐步修复
+  onBrokenAnchors: 'warn', // 允许broken anchors (会员内容中的锚点在SSG时不可见)
 
   // Chinese language configuration
   i18n: {
