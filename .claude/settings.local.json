@@ -56,7 +56,8 @@
       "Bash(npm run build:*)",
       "Bash(xargs sed:*)",
       "Bash(git checkout:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(netstat:*)"
     ],
     "deny": [],
     "ask": []
