@@ -185,26 +185,4 @@ export function PremiumGate({
   );
 }
 
-/**
- * MDX内容保护包装器
- * 用于在MDX文档中直接使用
- */
-export function PremiumContent({
-  children,
-  level = 'member'
-}: {
-  children: React.ReactNode;
-  level?: 'member' | 'vip';
-}) {
-  return (
-    <PremiumGate
-      requiredRole={level}
-      previewLines={2}
-      showPricing={true}
-    >
-      {children}
-    </PremiumGate>
-  );
-}
-
 export default PremiumGate;

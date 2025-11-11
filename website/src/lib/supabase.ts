@@ -3,11 +3,14 @@
  */
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+// 在SSG(静态站点生成)期间使用虚拟值,仅在浏览器环境检查真实值
+const isBrowser = typeof window !== 'undefined';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('缺少Supabase环境变量! 请检查.env文件');
+// 仅在浏览器环境中验证真实环境变量
+if (isBrowser && (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)) {
+  console.warn('⚠️ 缺少Supabase环境变量! 会员功能将不可用。请配置.env文件');
 }
 
 // 客户端实例(用于前端)

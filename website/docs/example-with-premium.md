@@ -2,7 +2,7 @@
 title: 示例：高级步法训练
 ---
 
-import { PremiumContent } from '@/components/PremiumGate';
+import { PremiumContent } from '@/components/PremiumContent';
 
 # 高级步法训练指南
 

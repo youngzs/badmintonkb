@@ -3,8 +3,10 @@
  */
 
 export { LoginButton } from './LoginButton';
-export { PremiumGate, PremiumContent } from './PremiumGate';
+export { PremiumGate } from './PremiumGate';
+export { PremiumContent } from './PremiumContent';
 export { PayButton } from './PayButton';
+export { PayButtonSafe } from './PayButtonSafe';
 
 // 导出类型
 export type { default as LoginButtonProps } from './LoginButton';
