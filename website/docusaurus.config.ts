@@ -2,6 +2,10 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import path from 'path';
+import dotenv from 'dotenv';
+
+// 加载环境变量
+dotenv.config();
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -71,6 +75,15 @@ const config: Config = {
                 path: require.resolve('path-browserify'),
               },
             },
+            plugins: [
+              new (require('webpack').DefinePlugin)({
+                'process.env.NEXT_PUBLIC_SUPABASE_URL': JSON.stringify(process.env.NEXT_PUBLIC_SUPABASE_URL || ''),
+                'process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY': JSON.stringify(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''),
+                'process.env.NEXT_PUBLIC_BACKEND_URL': JSON.stringify(process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001'),
+                'process.env.NEXT_PUBLIC_WECHAT_APPID': JSON.stringify(process.env.NEXT_PUBLIC_WECHAT_APPID || ''),
+                'process.env.NEXT_PUBLIC_WECHAT_MINI_APPID': JSON.stringify(process.env.NEXT_PUBLIC_WECHAT_MINI_APPID || ''),
+              }),
+            ],
           };
         },
       };
