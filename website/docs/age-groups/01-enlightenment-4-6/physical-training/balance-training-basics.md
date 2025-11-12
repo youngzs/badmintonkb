@@ -1,4 +1,4 @@
----
+﻿---
 title: "平衡能力训练 - 4-6岁儿童基础"
 section: "age-groups"
 category: "enlightenment-4-6"
@@ -179,7 +179,7 @@ cover_image: "./images/balance-training-cover.png"
 **安全保护**:
 - 教练或家长在旁保护
 - 平衡木两侧铺设软垫
-- 控制平衡木高度（` <20cm）`
+- 控制平衡木高度（` 灏戜簬20cm）`
 
 #### 训练项目3：趣味平衡游戏 - 独木桥探险
 
@@ -283,8 +283,8 @@ cover_image: "./images/balance-training-cover.png"
 | 评估维度 | 测试方法 | 4岁标准 | 5岁标准 | 6岁标准 |
 |---------|---------|---------|---------|---------|
 | 单脚站立 | 闭眼单脚站立时长 | ≥3秒 | ≥5秒 | ≥8秒 |
-| 平衡木行走 | 3米距离步数 | ` <15步` | ` <12步` | ` <10步` |
-| 动态平衡 | 直线倒退走5米 | 偏离` <50cm` | 偏离` <30cm` | 偏离` <20cm` |
+| 平衡木行走 | 3米距离步数 | ` 灏戜簬15步` | ` 灏戜簬12步` | ` 灏戜簬10步` |
+| 动态平衡 | 直线倒退走5米 | 偏离` 灏戜簬50cm` | 偏离` 灏戜簬30cm` | 偏离` 灏戜簬20cm` |
 | 本体感觉 | 闭眼触摸准确率 | ≥60% | ≥75% | ≥85% |
 
 ### 4周进阶评估
@@ -297,7 +297,7 @@ cover_image: "./images/balance-training-cover.png"
    - 单脚闭眼站立：≥5秒
 
 2. **动态平衡测试**
-   - 平衡木行走（3米）：` <8步，0次掉落`
+   - 平衡木行走（3米）：` 灏戜簬8步，0次掉落`
    - 单脚跳跃5次：连续成功
    - 旋转后站立：3圈后稳定站立≥5秒
 
@@ -392,9 +392,6 @@ cover_image: "./images/balance-training-cover.png"
 
 - [协调性训练基础](./coordination-training-basics.md)
 - [柔韧性训练入门](./flexibility-training-basics.md)
-- [前庭系统发育与平衡能力](../../theory/physical-training-science/vestibular-development.md)
-- [儿童本体感觉训练](../../theory/physical-training-science/proprioception-training.md)
-- [家长如何辅助平衡训练](../../guidance/parent-handbook/balance-training-support.md)
 
 ## 🔗 术语解释
 

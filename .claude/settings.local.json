@@ -58,7 +58,12 @@
       "Bash(git checkout:*)",
       "Bash(git commit:*)",
       "Bash(netstat:*)",
-      "Bash(QUICK_START.md)"
+      "Bash(QUICK_START.md)",
+      "Bash(python scripts/fix_mdx_issues.py:*)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File scripts/fix-mdx.ps1)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File scripts/fix-lt-symbols.ps1)",
+      "Bash(python scripts/check-links.py:*)",
+      "Bash(python scripts/fix-broken-links.py:*)"
     ],
     "deny": [],
     "ask": []
