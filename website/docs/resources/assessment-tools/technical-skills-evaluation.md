@@ -558,14 +558,14 @@
 ## 相关资源
 
 ### 延伸阅读
-- [羽毛球技术理论](../../theory/technique-theory/technique-fundamentals.md)
-- [青少年训练大纲](../../theory/technique-theory/youth-training-syllabus.md)
+- [羽毛球技术理论](../../theory/technique-theory/technique-fundamentals)
+- [青少年训练大纲](../../theory/technique-theory/youth-training-syllabus)
 - [分年龄段训练指南](../training-guides/)
 
 ### 实用工具
-- [体能测评工具](./physical-fitness-assessment.md)
-- [心理素质评估](./psychological-assessment.md)
-- [训练计划模板](../templates/training-plan-template.md)
+- [体能测评工具](./physical-fitness-assessment)
+- [心理素质评估](./psychological-assessment)
+- [训练计划模板](../templates/training-plan-template)
 
 ### 技术视频
 - [标准动作示范](../../video-library/technique-demonstrations/)

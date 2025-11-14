@@ -751,19 +751,18 @@
 ## 相关资源
 
 ### 延伸阅读
-- [运动心理学基础](../../theory/psychology/sports-psychology-basics.md)
-- [青少年心理发展](../../theory/psychology/youth-psychology.md)
-- [比赛心理准备](../../theory/psychology/competition-psychology.md)
+- [运动心理学基础](../../theory/psychology/sports-psychology-basics)
+- [青少年心理发展](../../theory/psychology/youth-psychology)
+- [比赛心理准备](../../theory/psychology/competition-psychology)
 
 ### 实用工具
-- [体能测评工具](./physical-fitness-assessment.md)
-- [技术评估工具](./technical-skills-evaluation.md)
-- [训练日志模板](../templates/training-log-template.md)
+- [体能测评工具](./physical-fitness-assessment)
+- [技术评估工具](./technical-skills-evaluation)
+- [训练日志模板](../templates/training-log-template)
 
 ### 心理训练资源
-- [放松训练音频](../../resources/audio/relaxation-training/)
-- [心理意象脚本](../../resources/scripts/mental-imagery/)
-- [心理训练计划](../templates/mental-training-plan.md)
+- [心理训练计划](../templates/mental-training-plan)
+- [心理训练方法](../../theory/psychology/mental-training-methods)
 
 ---
 

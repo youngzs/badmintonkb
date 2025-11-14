@@ -63,7 +63,9 @@
       "Bash(powershell.exe -ExecutionPolicy Bypass -File scripts/fix-mdx.ps1)",
       "Bash(powershell.exe -ExecutionPolicy Bypass -File scripts/fix-lt-symbols.ps1)",
       "Bash(python scripts/check-links.py:*)",
-      "Bash(python scripts/fix-broken-links.py:*)"
+      "Bash(python scripts/fix-broken-links.py:*)",
+      "Bash(paste:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []

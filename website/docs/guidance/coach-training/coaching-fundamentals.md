@@ -1474,10 +1474,10 @@ premium: true
 
 ## 延伸阅读
 
-- [青少年羽毛球训练大纲](../../theory/technique-theory/youth-training-syllabus.md)
-- [运动心理学基础](../../theory/psychology/sports-psychology-basics.md)
-- [运动损伤预防指南](../../theory/injury-prevention/injury-prevention-guide.md)
-- [家长支持手册](../parent-handbook/parental-support-guide.md)
+- [青少年羽毛球训练大纲](../../theory/technique-theory/youth-training-syllabus)
+- [运动心理学基础](../../theory/psychology/sports-psychology-basics)
+- [运动损伤预防指南](../../theory/injury-prevention/injury-prevention-guide)
+- [家长支持手册](../parent-handbook/parental-support-guide)
 
 ---
 

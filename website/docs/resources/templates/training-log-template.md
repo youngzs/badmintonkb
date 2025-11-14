@@ -870,15 +870,15 @@
 ## 相关资源
 
 ### 延伸阅读
-- [训练计划模板](./training-plan-template.md)
-- [体能测评工具](../assessment-tools/physical-fitness-assessment.md)
-- [技术评估工具](../assessment-tools/technical-skills-evaluation.md)
-- [心理素质评估](../assessment-tools/psychological-assessment.md)
+- [训练计划模板](./training-plan-template)
+- [体能测评工具](../assessment-tools/physical-fitness-assessment)
+- [技术评估工具](../assessment-tools/technical-skills-evaluation)
+- [心理素质评估](../assessment-tools/psychological-assessment)
 
 ### 实用工具
-- [训练计划制定](./training-plan-template.md)
-- [目标设定指南](../../guidance/coach-training/goal-setting-guide.md)
-- [家长支持指南](../../guidance/parent-handbook/parental-support-guide.md)
+- [训练计划制定](./training-plan-template)
+- [教练基础手册](../../guidance/coach-training/coaching-fundamentals)
+- [家长支持指南](../../guidance/parent-handbook/parental-support-guide)
 
 ---
 

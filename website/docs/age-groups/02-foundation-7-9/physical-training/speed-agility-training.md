@@ -440,16 +440,16 @@ A ---5m---B---5m--- D
 
 ## 📚 延伸阅读
 
-- [羽毛球基本步法教学](../technical-fundamentals/footwork-basics.md)
-- [反应能力专项训练](./reaction-training-advanced.md)
-- [青少年力量训练基础](../../theory/physical-training-science/youth-strength-training.md)
-- [运动损伤预防 - 下肢](../../theory/injury-prevention/lower-body-injury-prevention.md)
+- [羽毛球基本步法教学](../technical-fundamentals/footwork-basics)
+- [反应能力专项训练](./reaction-training-advanced)
+- [青少年力量训练基础](../../../theory/physical-training-science/youth-strength-training)
+- [运动损伤预防 - 下肢](../../../theory/injury-prevention/lower-body-injury-prevention)
 
 ## 🔗 术语解释
 
-- **反应速度**: 从接收刺激到开始动作的时间，主要由神经系统决定。([详细](../../glossary/terminology.md#reaction-speed))
-- **加速度**: 单位时间内速度的变化率，体现启动和冲刺能力。([详细](../../glossary/terminology.md#acceleration))
-- **敏捷性**: 快速改变身体位置和方向的能力，包含速度和协调性。([详细](../../glossary/terminology.md#agility))
+- **反应速度**: 从接收刺激到开始动作的时间，主要由神经系统决定。([详细](../../../glossary/terminology#reaction-speed))
+- **加速度**: 单位时间内速度的变化率，体现启动和冲刺能力。([详细](../../../glossary/terminology#acceleration))
+- **敏捷性**: 快速改变身体位置和方向的能力，包含速度和协调性。([详细](../../../glossary/terminology#agility))
 
 ---
 

@@ -392,19 +392,19 @@ cover_image: "./images/coordination-training-cover.png"
 
 ## 📚 延伸阅读
 
-- [柔韧性训练 - 4-6岁儿童](../physical-training/flexibility-training-basics.md)
-- [平衡能力发展](../physical-training/balance-training-basics.md)
-- [运动损伤预防 - 学龄前儿童](../../theory/injury-prevention/preschool-injury-prevention.md)
-- [如何培养孩子的运动兴趣](../../guidance/parent-handbook/cultivating-sports-interest.md)
-- [教练如何与4-6岁儿童沟通](../../guidance/coach-training/communication-with-preschoolers.md)
+- [柔韧性训练 - 4-6岁儿童](../physical-training/flexibility-training-basics)
+- [平衡能力发展](../physical-training/balance-training-basics)
+- [运动损伤预防 - 学龄前儿童](../../../theory/injury-prevention/preschool-injury-prevention)
+- [如何培养孩子的运动兴趣](../../../guidance/parent-handbook/cultivating-sports-interest)
+- [教练如何与4-6岁儿童沟通](../../../guidance/coach-training/communication-with-preschoolers)
 
 ## 🔗 术语解释
 
-- **协调性**: 身体各部位（神经、肌肉、感官）配合完成复杂动作的能力。包括手眼协调、手脚协调、全身协调等。 ([详细定义](../../glossary/terminology.md#coordination))
+- **协调性**: 身体各部位（神经、肌肉、感官）配合完成复杂动作的能力。包括手眼协调、手脚协调、全身协调等。 ([详细定义](../../../glossary/terminology#coordination))
 
-- **本体感觉**: 人体对自身位置、姿势、运动的感知能力，通过肌肉、关节、肌腱中的感受器实现。 ([详细定义](../../glossary/terminology.md#proprioception))
+- **本体感觉**: 人体对自身位置、姿势、运动的感知能力，通过肌肉、关节、肌腱中的感受器实现。 ([详细定义](../../../glossary/terminology#proprioception))
 
-- **敏感期**: 儿童发育过程中，某项能力发展最快、训练效果最佳的特定时期。错过敏感期，训练效率会大幅降低。 ([详细定义](../../glossary/terminology.md#sensitive-period))
+- **敏感期**: 儿童发育过程中，某项能力发展最快、训练效果最佳的特定时期。错过敏感期，训练效率会大幅降低。 ([详细定义](../../../glossary/terminology#sensitive-period))
 
 ---
 

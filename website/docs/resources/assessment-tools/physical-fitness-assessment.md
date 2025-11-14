@@ -425,14 +425,14 @@
 ## 相关资源
 
 ### 延伸阅读
-- [青少年体能训练科学基础](../../theory/physical-training-science/youth-fitness-fundamentals.md)
-- [不同年龄段训练重点](../../theory/physical-training-science/age-specific-training.md)
-- [运动损伤预防](../../theory/injury-prevention/injury-prevention-guide.md)
+- [青少年体能训练科学基础](../../theory/physical-training-science/youth-fitness-fundamentals)
+- [不同年龄段训练重点](../../theory/physical-training-science/age-specific-training)
+- [运动损伤预防](../../theory/injury-prevention/injury-prevention-guide)
 
 ### 实用工具
-- [技术动作评估](./technical-skills-evaluation.md)
-- [心理素质测评](./psychological-assessment.md)
-- [训练计划模板](../templates/training-plan-template.md)
+- [技术动作评估](./technical-skills-evaluation)
+- [心理素质测评](./psychological-assessment)
+- [训练计划模板](../templates/training-plan-template)
 
 ### 专业术语
 - [体能训练术语](../../glossary/terminology.md#physical-fitness)

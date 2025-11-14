@@ -1,4 +1,8 @@
 {
   "label": "学习资源",
-  "position": 5
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "训练模板、评估工具和参考资料"
+  }
 }

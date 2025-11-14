@@ -1455,10 +1455,10 @@ premium: true
 
 ## 延伸阅读
 
-- [青少年运动心理学](../../theory/psychology/youth-sports-psychology.md)
-- [青少年运动营养指南](../../theory/nutrition/youth-sports-nutrition-basics.md)
-- [运动损伤家庭应对](../../theory/injury-prevention/home-injury-care.md)
-- [教练培训手册](../coach-training/coaching-fundamentals.md)
+- [青少年运动心理学](../../theory/psychology/sports-psychology-basics)
+- [青少年运动营养指南](../../theory/nutrition/youth-sports-nutrition-basics)
+- [运动损伤家庭应对](../../theory/injury-prevention/home-injury-care)
+- [教练培训手册](../coach-training/coaching-fundamentals)
 
 ---
 

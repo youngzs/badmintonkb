@@ -1,4 +1,8 @@
 {
   "label": "理论知识",
-  "position": 2
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "青少年羽毛球训练的理论基础知识"
+  }
 }

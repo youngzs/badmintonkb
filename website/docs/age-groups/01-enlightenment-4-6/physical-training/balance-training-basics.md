@@ -390,18 +390,18 @@ cover_image: "./images/balance-training-cover.png"
 
 ## 📚 延伸阅读
 
-- [协调性训练基础](./coordination-training-basics.md)
-- [柔韧性训练入门](./flexibility-training-basics.md)
+- [协调性训练基础](./coordination-training-basics)
+- [柔韧性训练入门](./flexibility-training-basics)
 
 ## 🔗 术语解释
 
-- **静态平衡**: 身体保持在相对固定位置时的稳定能力，如单脚站立。([详细定义](../../glossary/terminology.md#static-balance))
+- **静态平衡**: 身体保持在相对固定位置时的稳定能力，如单脚站立。([详细定义](../../../glossary/terminology#static-balance))
 
-- **动态平衡**: 身体在运动过程中保持稳定的能力，如行走、跑步时的平衡控制。([详细定义](../../glossary/terminology.md#dynamic-balance))
+- **动态平衡**: 身体在运动过程中保持稳定的能力，如行走、跑步时的平衡控制。([详细定义](../../../glossary/terminology#dynamic-balance))
 
-- **本体感觉**: 身体对自身位置、姿势、运动状态的感知，不依赖视觉。([详细定义](../../glossary/terminology.md#proprioception))
+- **本体感觉**: 身体对自身位置、姿势、运动状态的感知，不依赖视觉。([详细定义](../../../glossary/terminology#proprioception))
 
-- **前庭系统**: 位于内耳的平衡感受器官，负责感知头部位置和运动。([详细定义](../../glossary/terminology.md#vestibular-system))
+- **前庭系统**: 位于内耳的平衡感受器官，负责感知头部位置和运动。([详细定义](../../../glossary/terminology#vestibular-system))
 
 ---
 

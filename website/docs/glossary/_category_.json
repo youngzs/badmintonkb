@@ -1,4 +1,8 @@
 {
   "label": "术语词汇",
-  "position": 3
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "羽毛球训练相关术语和词汇解释"
+  }
 }
