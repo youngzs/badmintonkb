@@ -1,0 +1,59 @@
+{
+  "$schema": "https://framework-1258016615.tcloudbaseapp.com/schema/latest.json",
+  "version": "2.0",
+  "envId": "badminton-kb-0g3ceetq971337db",
+  "functionRoot": "./cloudfunctions",
+  "functions": [
+    {
+      "name": "payment-create",
+      "timeout": 20,
+      "runtime": "Nodejs16.13",
+      "memorySize": 256,
+      "installDependency": true
+    },
+    {
+      "name": "payment-callback",
+      "timeout": 20,
+      "runtime": "Nodejs16.13",
+      "memorySize": 256,
+      "installDependency": true
+    },
+    {
+      "name": "check-subscription",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "memorySize": 128,
+      "installDependency": true
+    },
+    {
+      "name": "expire-subscriptions",
+      "timeout": 60,
+      "runtime": "Nodejs16.13",
+      "memorySize": 256,
+      "installDependency": true,
+      "triggers": [
+        {
+          "type": "timer",
+          "config": "0 * * * * * *"
+        }
+      ]
+    }
+  ],
+  "framework": {
+    "name": "docusaurus",
+    "plugins": {
+      "client": {
+        "use": "@cloudbase/framework-plugin-website",
+        "inputs": {
+          "buildCommand": "npm run build",
+          "outputPath": "build",
+          "cloudPath": "/",
+          "envVariables": {
+            "NEXT_PUBLIC_CLOUDBASE_ENV_ID": "{{env.ENV_ID}}"
+          }
+        }
+      }
+    }
+  },
+  "region": "ap-shanghai"
+}

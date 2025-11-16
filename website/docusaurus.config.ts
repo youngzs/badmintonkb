@@ -77,8 +77,7 @@ const config: Config = {
             },
             plugins: [
               new (require('webpack').DefinePlugin)({
-                'process.env.NEXT_PUBLIC_SUPABASE_URL': JSON.stringify(process.env.NEXT_PUBLIC_SUPABASE_URL || ''),
-                'process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY': JSON.stringify(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''),
+                'process.env.NEXT_PUBLIC_CLOUDBASE_ENV_ID': JSON.stringify(process.env.NEXT_PUBLIC_CLOUDBASE_ENV_ID || 'badminton-kb-0g3ceetq971337db'),
                 'process.env.NEXT_PUBLIC_BACKEND_URL': JSON.stringify(process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001'),
                 'process.env.NEXT_PUBLIC_WECHAT_APPID': JSON.stringify(process.env.NEXT_PUBLIC_WECHAT_APPID || ''),
                 'process.env.NEXT_PUBLIC_WECHAT_MINI_APPID': JSON.stringify(process.env.NEXT_PUBLIC_WECHAT_MINI_APPID || ''),

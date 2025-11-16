@@ -1,15 +1,19 @@
 /**
- * 用户认证上下文
+ * 用户认证上下文 - CloudBase 版本
  */
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User } from '@supabase/supabase-js';
-import { supabase, getUserSubscription, UserSubscription, UserRole } from '@/lib/supabase';
+import {
+  cloudbase,
+  CloudBaseUser,
+  UserSubscription,
+  UserRole
+} from '@/lib/cloudbase';
 
 interface AuthContextType {
-  user: User | null;
+  user: CloudBaseUser | null;
   subscription: UserSubscription | null;
   loading: boolean;
-  signIn: (provider: 'wechat' | 'phone') => Promise<void>;
+  signIn: (provider: 'wechat' | 'anonymous') => Promise<void>;
   signOut: () => Promise<void>;
   refreshSubscription: () => Promise<void>;
 }
@@ -17,52 +21,53 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<CloudBaseUser | null>(null);
   const [subscription, setSubscription] = useState<UserSubscription | null>(null);
   const [loading, setLoading] = useState(true);
 
   // 初始化认证状态
   useEffect(() => {
-    // 获取当前会话
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        loadSubscription(session.user.id);
-      } else {
+    const initAuth = async () => {
+      try {
+        console.log('🔄 初始化认证系统...');
+
+        // 获取当前用户
+        const currentUser = await cloudbase.auth.getCurrentUser();
+        console.log('✅ 初始用户状态:', currentUser);
+        setUser(currentUser);
+
+        if (currentUser) {
+          await loadSubscription();
+        } else {
+          setLoading(false);
+        }
+
+        console.log('✅ 认证系统初始化完成');
+
+        // 暂时禁用 onAuthStateChanged 监听器以避免死循环
+        // 依赖手动的 signIn/signOut 来更新状态
+      } catch (error) {
+        console.error('❌ 初始化认证失败:', error);
         setLoading(false);
       }
-    });
-
-    // 监听认证状态变化
-    const { data: { subscription: authSubscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log('Auth state changed:', event);
-        setUser(session?.user ?? null);
-
-        if (session?.user) {
-          await loadSubscription(session.user.id);
-        } else {
-          setSubscription(null);
-        }
-      }
-    );
-
-    return () => {
-      authSubscription.unsubscribe();
     };
+
+    initAuth();
   }, []);
 
   // 加载订阅信息
-  const loadSubscription = async (userId: string) => {
+  const loadSubscription = async () => {
     try {
-      const sub = await getUserSubscription(userId);
+      const sub = await cloudbase.subscription.getUserSubscription();
       setSubscription(sub);
     } catch (error) {
       console.error('加载订阅信息失败:', error);
       setSubscription({
         plan: 'free',
         status: 'expired',
-        expiresAt: null
+        expiresAt: null,
+        createdAt: new Date(),
+        updatedAt: new Date()
       });
     } finally {
       setLoading(false);
@@ -72,30 +77,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // 刷新订阅信息
   const refreshSubscription = async () => {
     if (user) {
-      await loadSubscription(user.id);
+      await loadSubscription();
     }
   };
 
   // 登录
-  const signIn = async (provider: 'wechat' | 'phone') => {
+  const signIn = async (provider: 'wechat' | 'anonymous') => {
     try {
-      if (provider === 'wechat') {
-        // 微信登录 - 重定向到微信授权页面
-        const { data, error } = await supabase.auth.signInWithOAuth({
-          provider: 'wechat' as any,
-          options: {
-            redirectTo: `${window.location.origin}/auth/callback`,
-            scopes: 'snsapi_userinfo'
-          }
-        });
+      setLoading(true);
 
-        if (error) throw error;
-      } else if (provider === 'phone') {
-        // 手机号登录 - 这里需要额外实现OTP逻辑
-        throw new Error('手机号登录暂未实现');
+      if (provider === 'wechat') {
+        // 微信登录
+        const result = await cloudbase.auth.signInWithWeChat();
+        if (!result.success) {
+          throw new Error(result.error || '微信登录失败');
+        }
+      } else if (provider === 'anonymous') {
+        // 匿名登录（测试用）
+        const result = await cloudbase.auth.signInAnonymously();
+        if (!result.success) {
+          throw new Error(result.error || '匿名登录失败');
+        }
+      }
+
+      // 登录成功后，手动获取用户信息和订阅状态
+      const currentUser = await cloudbase.auth.getCurrentUser();
+      console.log('✅ 登录成功，用户信息:', currentUser);
+      setUser(currentUser);
+
+      if (currentUser) {
+        await loadSubscription();
+      } else {
+        setLoading(false);
       }
     } catch (error) {
-      console.error('登录失败:', error);
+      console.error('❌ 登录失败:', error);
+      setLoading(false);
       throw error;
     }
   };
@@ -103,8 +120,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // 登出
   const signOut = async () => {
     try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
+      const result = await cloudbase.auth.signOut();
+      if (!result.success) {
+        throw new Error(result.error || '登出失败');
+      }
       setUser(null);
       setSubscription(null);
     } catch (error) {

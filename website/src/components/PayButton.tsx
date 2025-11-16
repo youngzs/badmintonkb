@@ -1,10 +1,9 @@
 /**
- * 支付按钮组件 - Docusaurus简化版
- * 注意: 完整支付功能需要后端支持,这里提供模拟版本
+ * 支付按钮组件 - CloudBase 版本
  */
 import React, { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { UserRole, supabase } from '@/lib/supabase';
+import { UserRole, cloudbase } from '@/lib/cloudbase';
 import { toast } from 'react-toastify';
 import './PayButton.css';
 
@@ -72,25 +71,15 @@ export function PayButton({
     setLoading(true);
 
     try {
-      // 计算过期时间
-      const expiresAt = new Date();
-      if (plan === 'vip') {
-        expiresAt.setDate(expiresAt.getDate() + 365);
-      } else {
-        expiresAt.setDate(expiresAt.getDate() + 30);
+      // 计算过期时间(月数)
+      const duration = plan === 'vip' ? 12 : 1;
+
+      // 调用 CloudBase 更新订阅(测试用)
+      const result = await cloudbase.subscription.updateSubscription(plan, duration);
+
+      if (!result.success) {
+        throw new Error(result.error || '开通失败');
       }
-
-      // 直接更新订阅(仅用于开发测试!)
-      const { error } = await supabase
-        .from('subscriptions')
-        .upsert({
-          user_id: user.id,
-          plan: plan,
-          status: 'active',
-          expires_at: expiresAt.toISOString()
-        });
-
-      if (error) throw error;
 
       toast.success('开通成功! (开发测试模式)');
       setShowModal(false);
@@ -98,108 +87,86 @@ export function PayButton({
       // 刷新订阅信息
       await refreshSubscription();
 
-      onSuccess?.();
-    } catch (error) {
-      console.error('开通失败:', error);
-      toast.error(error instanceof Error ? error.message : '开通失败');
+      // 回调
+      if (onSuccess) {
+        onSuccess();
+      }
+    } catch (error: any) {
+      console.error('支付失败:', error);
+      toast.error(error.message || '开通失败，请重试');
     } finally {
       setLoading(false);
     }
   };
 
-  // 跳转到支付页面(生产环境)
-  const handleRealPayment = () => {
-    // TODO: 跳转到实际的支付页面
-    toast.info('支付功能开发中,请联系管理员开通');
-    // window.location.href = `/pricing?plan=${plan}`;
-  };
-
+  // 处理点击
   const handleClick = () => {
+    if (!user) {
+      toast.info('请先登录');
+      return;
+    }
     setShowModal(true);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  const buttonClass = `pay-button pay-button--${variant} pay-button--${size}`;
 
   return (
     <>
       <button
-        className={`pay-button pay-button--${variant} pay-button--${size}`}
+        className={buttonClass}
         onClick={handleClick}
-        disabled={loading || !user}
+        disabled={loading}
       >
-        {loading ? (
-          <>
-            <span className="pay-button__spinner"></span>
-            <span>处理中...</span>
-          </>
-        ) : (
-          text || `订阅${planConfig.name}`
-        )}
+        {loading ? '处理中...' : (text || `订阅${planConfig.name}`)}
       </button>
 
-      {/* 支付选择弹窗 */}
+      {/* 支付确认弹窗 */}
       {showModal && (
-        <div className="payment-modal" onClick={closeModal}>
-          <div className="payment-modal__content" onClick={(e) => e.stopPropagation()}>
-            <button className="payment-modal__close" onClick={closeModal}>
-              ×
-            </button>
+        <div className="pay-modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="pay-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="pay-modal__header">
+              <h3>{planConfig.name}</h3>
+              <button className="pay-modal__close" onClick={() => setShowModal(false)}>
+                ×
+              </button>
+            </div>
 
-            <h3 className="payment-modal__title">
-              订阅{planConfig.name}
-            </h3>
+            <div className="pay-modal__body">
+              <div className="pay-modal__price">
+                <span className="price-amount">{planConfig.displayPrice}</span>
+                <span className="price-unit">/{planConfig.duration}</span>
+              </div>
 
-            <div className="payment-modal__plan">
-              <div className="plan-name">{planConfig.name}</div>
-              <div className="plan-price">
-                {planConfig.displayPrice}
-                <span className="plan-duration">/{planConfig.duration}</span>
+              <div className="pay-modal__features">
+                <h4>会员权益</h4>
+                <ul>
+                  {planConfig.features.map((feature, index) => (
+                    <li key={index}>✅ {feature}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pay-modal__notice">
+                <p>⚠️ 开发测试模式</p>
+                <p>点击下方按钮直接开通会员（无需真实支付）</p>
               </div>
             </div>
 
-            <div className="payment-modal__features">
-              <h4>包含权益</h4>
-              <ul>
-                {planConfig.features.map((feature, index) => (
-                  <li key={index}>
-                    <svg className="check-icon" viewBox="0 0 24 24">
-                      <path
-                        fill="currentColor"
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                      />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="payment-modal__actions">
-              {/* 开发测试按钮 */}
+            <div className="pay-modal__footer">
               <button
-                className="pay-button pay-button--primary pay-button--large"
+                className="pay-modal__button pay-modal__button--cancel"
+                onClick={() => setShowModal(false)}
+                disabled={loading}
+              >
+                取消
+              </button>
+              <button
+                className="pay-modal__button pay-modal__button--confirm"
                 onClick={handleMockPayment}
                 disabled={loading}
-                style={{ width: '100%', marginBottom: '12px' }}
               >
-                {loading ? '处理中...' : '🧪 测试开通 (开发模式)'}
+                {loading ? '处理中...' : '确认开通'}
               </button>
-
-              {/* 生产支付按钮 */}
-              <button
-                className="pay-button pay-button--outline pay-button--large"
-                onClick={handleRealPayment}
-                style={{ width: '100%' }}
-              >
-                💳 正式支付 (即将上线)
-              </button>
-            </div>
-
-            <div className="payment-modal__tips">
-              <p className="tip-main">⚠️ 当前为开发测试模式</p>
-              <p className="tip-sub">正式支付功能需要配置微信支付</p>
             </div>
           </div>
         </div>

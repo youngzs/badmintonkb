@@ -1,0 +1,61 @@
+{
+  "name": "badminton-knowledge-platform",
+  "version": "2.0.0",
+  "description": "Youth Badminton Training Knowledge Base (CloudBase Version)",
+  "private": true,
+  "scripts": {
+    "dev": "docusaurus start",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear",
+    "deploy": "npm run build && cloudbase hosting deploy build",
+    "deploy:functions": "cloudbase functions:deploy --all",
+    "cloudbase:login": "cloudbase login",
+    "cloudbase:init": "cloudbase init",
+    "lint": "eslint . --ext .js,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.ts,.tsx --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@cloudbase/js-sdk": "^1.7.3",
+    "@docusaurus/core": "^3.0.0",
+    "@docusaurus/preset-classic": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-toastify": "^10.0.0",
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "@cloudbase/cli": "^1.9.0",
+    "@docusaurus/module-type-aliases": "^3.0.0",
+    "@docusaurus/types": "^3.0.0",
+    "@types/react": "^18.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-react": "^7.33.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.2.0",
+    "wx-server-sdk": "^3.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "badminton",
+    "training",
+    "youth-sports",
+    "knowledge-base",
+    "cloudbase",
+    "tencent-cloud",
+    "wechat"
+  ],
+  "author": "",
+  "license": "MIT"
+}

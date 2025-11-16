@@ -4,7 +4,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import { useRequireAuth } from '@/contexts/AuthContext';
-import { UserRole } from '@/lib/supabase';
+import { UserRole } from '@/lib/cloudbase';
 import PayButton from './PayButton';
 import LoginButton from './LoginButton';
 import './PremiumGate.css';

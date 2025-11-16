@@ -5,7 +5,7 @@
 import React from 'react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import { PremiumGate } from './PremiumGate';
-import { UserRole } from '@/lib/supabase';
+import { UserRole } from '@/lib/cloudbase';
 
 interface PremiumContentProps {
   children: React.ReactNode;

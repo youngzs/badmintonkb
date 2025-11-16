@@ -1,0 +1,190 @@
+---
+title: CloudBase 简单测试
+description: 测试 CloudBase 基本功能
+---
+
+import React from 'react';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
+export function SimpleCloudBaseTest() {
+  const [status, setStatus] = React.useState('未初始化');
+  const [user, setUser] = React.useState(null);
+  const [logs, setLogs] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
+  const addLog = (msg) => {
+    console.log(msg);
+    setLogs(prev => [...prev, `${new Date().toLocaleTimeString()}: ${msg}`]);
+  };
+
+  const testInit = async () => {
+    if (loading) return; // 防止重复点击
+    
+    try {
+      setLoading(true);
+      addLog('步骤1: 开始加载模块...');
+      setStatus('正在初始化...');
+
+      addLog('步骤2: 导入 cloudbase 模块...');
+      
+      // 添加超时保护
+      const importPromise = import('@/lib/cloudbase');
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('模块加载超时（10秒）')), 10000)
+      );
+      
+      const { cloudbase } = await Promise.race([importPromise, timeoutPromise]);
+      addLog('步骤3: ✅ CloudBase 模块加载成功');
+      setStatus('✅ CloudBase 加载成功');
+
+      addLog('步骤4: 调用 getCurrentUser()...');
+      const currentUser = await Promise.race([
+        cloudbase.auth.getCurrentUser(),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('获取用户超时（5秒）')), 5000))
+      ]);
+
+      addLog(`步骤5: ✅ 获取用户完成: ${JSON.stringify(currentUser)}`);
+      setUser(currentUser);
+      setStatus(`✅ 获取用户状态: ${currentUser ? '已登录' : '未登录'}`);
+    } catch (error) {
+      const errorMsg = error?.message || String(error);
+      addLog(`❌ 错误: ${errorMsg}`);
+      setStatus(`❌ 错误: ${errorMsg}`);
+      console.error('测试失败:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const testAnonymousLogin = async () => {
+    if (loading) return; // 防止重复点击
+    
+    try {
+      setLoading(true);
+      addLog('开始匿名登录...');
+      setStatus('正在匿名登录...');
+      
+      // 添加超时保护
+      const importPromise = import('@/lib/cloudbase');
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('模块加载超时（10秒）')), 10000)
+      );
+      
+      const { cloudbase } = await Promise.race([importPromise, timeoutPromise]);
+      
+      const loginPromise = cloudbase.auth.signInAnonymously();
+      const loginTimeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('登录操作超时（10秒）')), 10000)
+      );
+      
+      const result = await Promise.race([loginPromise, loginTimeoutPromise]);
+
+      if (result.success) {
+        addLog('✅ 匿名登录成功');
+        setStatus('✅ 匿名登录成功');
+        
+        const userPromise = cloudbase.auth.getCurrentUser();
+        const userTimeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('获取用户信息超时（5秒）')), 5000)
+        );
+        
+        const currentUser = await Promise.race([userPromise, userTimeoutPromise]);
+        setUser(currentUser);
+        addLog(`✅ 用户信息: ${JSON.stringify(currentUser)}`);
+      } else {
+        const errorMsg = result.error || '未知错误';
+        addLog(`❌ 登录失败: ${errorMsg}`);
+        setStatus(`❌ 登录失败: ${errorMsg}`);
+      }
+    } catch (error) {
+      const errorMsg = error?.message || String(error);
+      addLog(`❌ 错误: ${errorMsg}`);
+      setStatus(`❌ 错误: ${errorMsg}`);
+      console.error('登录失败:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{ padding: '2rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+      <h2>🧪 CloudBase 简单测试</h2>
+
+      <div style={{ marginBottom: '1rem', padding: '1rem', background: '#f5f5f5', borderRadius: '4px' }}>
+        <p><strong>状态:</strong> {status}</p>
+        {user && (
+          <div>
+            <p><strong>用户 UID:</strong> {user.uid}</p>
+            <p><strong>登录类型:</strong> {user.loginType}</p>
+          </div>
+        )}
+      </div>
+
+      {logs.length > 0 && (
+        <div style={{ marginBottom: '1rem', padding: '1rem', background: '#f0f0f0', borderRadius: '4px', maxHeight: '200px', overflowY: 'auto' }}>
+          <p><strong>执行日志:</strong></p>
+          {logs.map((log, i) => (
+            <div key={i} style={{ fontSize: '0.85rem', fontFamily: 'monospace', marginBottom: '4px' }}>
+              {log}
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div style={{ display: 'flex', gap: '1rem' }}>
+        <button
+          onClick={testInit}
+          disabled={loading}
+          style={{
+            padding: '0.75rem 1.5rem',
+            fontSize: '1rem',
+            backgroundColor: loading ? '#95a5a6' : '#3498db',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: loading ? 'not-allowed' : 'pointer',
+            opacity: loading ? 0.6 : 1,
+            transition: 'all 0.2s'
+          }}
+        >
+          {loading ? '⏳ 处理中...' : '🔍 测试初始化'}
+        </button>
+
+        <button
+          onClick={testAnonymousLogin}
+          disabled={loading}
+          style={{
+            padding: '0.75rem 1.5rem',
+            fontSize: '1rem',
+            backgroundColor: loading ? '#95a5a6' : '#2ecc71',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: loading ? 'not-allowed' : 'pointer',
+            opacity: loading ? 0.6 : 1,
+            transition: 'all 0.2s'
+          }}
+        >
+          {loading ? '⏳ 处理中...' : '🔐 测试匿名登录'}
+        </button>
+      </div>
+
+      <div style={{ marginTop: '2rem', fontSize: '0.9rem', color: '#666' }}>
+        <p><strong>说明:</strong></p>
+        <ol>
+          <li>先点击"测试初始化"确认 CloudBase SDK 可以正常加载</li>
+          <li>再点击"测试匿名登录"测试登录功能</li>
+          <li>打开浏览器控制台查看详细日志</li>
+        </ol>
+      </div>
+    </div>
+  );
+}
+
+# CloudBase 简单测试
+
+这是一个简化的测试页面，不使用 AuthContext，直接测试 CloudBase 基本功能。
+
+<BrowserOnly>
+  {() => <SimpleCloudBaseTest />}
+</BrowserOnly>

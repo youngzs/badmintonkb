@@ -65,7 +65,13 @@
       "Bash(python scripts/check-links.py:*)",
       "Bash(python scripts/fix-broken-links.py:*)",
       "Bash(paste:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(npm run:*)",
+      "Bash(cloudbase env:*)",
+      "Bash(cloudbase env:list:*)",
+      "Bash(cloudbase functions:list:*)",
+      "Bash(cloudbase db:collection:list:*)",
+      "Bash(node scripts/setup-database.js:*)"
     ],
     "deny": [],
     "ask": []

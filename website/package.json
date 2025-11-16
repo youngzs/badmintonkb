@@ -15,12 +15,11 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@cloudbase/js-sdk": "^2.22.5",
     "@docusaurus/core": "3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@easyops-cn/docusaurus-search-local": "^0.52.1",
     "@mdx-js/react": "^3.0.0",
-    "@supabase/auth-helpers-react": "^0.5.0",
-    "@supabase/supabase-js": "^2.81.0",
     "buffer": "^6.0.3",
     "clsx": "^2.0.0",
     "crypto-browserify": "^3.12.1",

@@ -5,7 +5,7 @@
 import React from 'react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import PayButton from './PayButton';
-import { UserRole } from '@/lib/supabase';
+import { UserRole } from '@/lib/cloudbase';
 
 interface PayButtonSafeProps {
   plan?: UserRole;
